@@ -23,7 +23,6 @@ class searchController extends Controller
         $searchdetail ->phone= $request ->phone;
 
         if($searchdetail->save()){
-          //  $response = ["Message"=>"Information saved but Item not found"];
             $found = found::get();
             foreach($found as $item){
                 if($item->docfirstname === $searchdetail['lostdocfirstname'] && $item->doclastname === $searchdetail['lostdoclastname'] &&  $item->dateofbirth === $searchdetail['lostdocdateofbirth'] && $item->gender === $searchdetail['searchinggender'] && $item->nationality === $searchdetail['searchingnationality']){
@@ -31,7 +30,6 @@ class searchController extends Controller
             return response($response, 200); 
                 }
             }
-            // return response($response, 200);
             }else{
               $response = ["Message"=>"Submission Failed"];
                 return response($response, 404);
